@@ -18,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      </header>
       <Router>
         <NavigationBar/>
         <Switch>
@@ -27,7 +28,7 @@ function App() {
         </Switch>
           
       </Router>
-      </header>
+      
     </div>
   );
 }
