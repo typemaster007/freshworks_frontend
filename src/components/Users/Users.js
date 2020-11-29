@@ -7,7 +7,7 @@ let flag=0;
 
 const validateForm = (errors) => {
     let valid = false;
-    Object.values(errors).forEach(      // if we have an error string set valid to false
+    Object.values(errors).forEach(      // If an error is found string set valid to false
       (val) => 
       { if(val ==='set' && flag === 1)
             { valid = true; }
