@@ -20,6 +20,7 @@ class Scientist extends React.Component {
           duckdata: [
               {
                     "id":"1",
+                    "username":"John Cooler",
                     "feedtime":"9.15 AM",
                     "food":"salad",
                     "location":"Miami",
@@ -28,6 +29,7 @@ class Scientist extends React.Component {
               },
               {
                     "id":"2",
+                    "username":"Mark Hamberg",
                     "feedtime":"6.15 PM",
                     "food":"celery",
                     "location":"Hawaii",
@@ -80,27 +82,36 @@ class Scientist extends React.Component {
                                 <div className={"card "+newColor} style= {{width: "auto",height: "300px"}}>
                                     <div className="card-body" key={duck.id} style={{width: "auto"}} >
                                         
-                                        <Popup trigger={<h4 className="card-title"><Link style={{}}>{duck.feedtime}</Link></h4>} modal closeOnDocumentClick>                
-                                                {
-                                                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
-                                                  <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>duck Details</h2>
-                                                  <div className="validmsg" style={{justifyContent: 'center'}}> 
-                                                    <h4 className="card-title" style={{color: 'black'}}>Title: {duck.feedtime}</h4>
-                                                    <hr />
-                                                    <p style={{color: 'black'}} >
-                                                        Author: {duck.feedtime}
-                                                    </p>
-                                                    <hr />
-                                                    <p style={{color: 'black'}} >
-                                                        Description: {duck.location}
-                                                    </p>                                                                                                       
-                                                  </div>
-                                                </div>
-                                                 }                                                
+                                        
+                                        <Popup trigger={<h4 className="card-title"><Link style={{color:'black'}}>{duck.username}</Link></h4>} 
+                                          modal
+                                          closeOnDocumentClick
+                                          >                
+                                          
+                                          <div style={{border: 'solid black 2px',borderBlockColor: 'black', borderRadius: '0.5em', background: 'white', padding:'10px'}}>
+                                            <h4 style={{display: 'flex', justifyContent: 'center'}}>Payment details</h4>
+                                            <div className="validmsg" style={{display: 'flex', justifyContent: 'center'}}> 
+                                            Hi secondary content here
+                                            </div>
+                                            <div> Chec these out </div>
+                                          </div>                                        
                                         </Popup>
+
                                         <hr />
                                         <p className="card-text">
-                                            Author: {duck.number}
+                                            Feedtime: {duck.feedtime}
+                                        </p>
+                                        <p className="card-text">
+                                            Food: {duck.food}
+                                        </p>
+                                        <p className="card-text">
+                                            Location: {duck.location}
+                                        </p>
+                                        <p className="card-text">
+                                            Number: {duck.number}
+                                        </p>
+                                        <p className="card-text">
+                                            Quantity: {duck.quantity}
                                         </p>
                                         <hr />
                                     </div>
