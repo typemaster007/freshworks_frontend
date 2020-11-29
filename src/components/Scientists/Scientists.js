@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Jumbotron } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
-
+import axios from 'axios';
   
 
 class Scientist extends React.Component {
@@ -46,6 +46,20 @@ class Scientist extends React.Component {
     
       }
 
+      componentDidMount() 
+      {        
+        this.inputRef.current.focus();
+
+        axios
+          .get('http://localhost:5000/getducks')
+          .then(response => {
+            console.log("Response =" ,response)
+          })
+          .catch(error => {
+            console.log("Error = ", error)
+          })
+      }
+
 
       
       
@@ -78,7 +92,7 @@ class Scientist extends React.Component {
                         }
                         return (
                             <div key={duck.id} className="col col-sm-4 " 
-                                style={{width: "360px", float:"left", marginLeft:"-15px"}}>
+                                style={{width: "360px", float:"left", marginLeft:"-15px"}} ref={this.inputRef}>
                                 <div className={"card "+newColor} style= {{width: "auto",height: "300px"}}>
                                     <div className="card-body" key={duck.id} style={{width: "auto"}} >
                                         
