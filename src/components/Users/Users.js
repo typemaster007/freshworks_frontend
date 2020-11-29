@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from "react-bootstrap";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
+let flag = 0;
 
 const validateForm = (errors) => {
     let valid = false;

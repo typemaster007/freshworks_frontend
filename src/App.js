@@ -6,8 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 
-
-
+import LandingPage from './components/Landing/Landing'
+import UserPage from './components/Users/Users'
+import ScientistPage from './components/Scientists/Scientists'
 
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
       <header className="App-header">
       <Router>
         <NavigationBar/>
+        <Switch>
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/users" exact component={UserPage} />
+            <Route path="/scientists" exact component={ScientistPage} />
+        </Switch>
           
       </Router>
       </header>
