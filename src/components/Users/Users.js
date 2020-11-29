@@ -24,6 +24,8 @@ class UserForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
+          formValid: false,
+          errcount: null,
           feedtime: '',
           food: '',
           location: '',
@@ -68,17 +70,29 @@ class UserForm extends React.Component {
                     event.target.value = event.target.value.replace(/[^0-9 ]/ig, '')
                 }
                 else{
-                    errors[name] = value < 1
-                    ? 'Minimum number cannot be less than 1'
-                    : 'set';
-                    if (value.length>=1) {flag = 1;} else{ flag=0;}
+                    if (value>=1 && value !=='') {
+                        errors[name] = 'set';
+                        flag = 1;} 
+                    else{ 
+                        errors[name] = 'Minimum number cannot be less than 1';
+                        flag=0;}
                 }            
+        }
+        else {
+            if(name=='feedtime'){
+                
+                errors[name] = value==''
+                    ? 'Enter Time'
+                    : 'set';
+                    if (value!='') {flag = 1;} else{ flag=0;}
+            }
         }
 
         this.setState({errors, [name]: value}, ()=> {
-            console.log(errors)
+            console.log("Error=",errors)
         })
-
+        this.setState({formValid: validateForm(this.state.errors)});
+        console.log("Valid = ", this.state.formValid );
         
     }
   
@@ -91,6 +105,9 @@ class UserForm extends React.Component {
     }
   
     render() {
+
+        const {errors, formValid} = this.state;
+
         return (
             <>              
               <Jumbotron fluid>
@@ -106,9 +123,14 @@ class UserForm extends React.Component {
                             <label >What time did you feed the ducks?</label>                            
                             <input  type="time" name="feedtime" step="1" value={this.state.time} className="form-control" placeholder="Time" onChange={this.handleChange}/>                         
                         </div>
+                        <div>&nbsp;{errors.feedtime.length > 0 && errors.feedtime !== 'set' &&  
+                        <span1 className='error1'>{errors.feedtime}</span1>}</div>
+                        
                         <div className="form-group">
                             <label >What did you feed?</label>
                             <input type="text" className="form-control" name="food" id="food" onChange={this.handleChange} placeholder="Password"/>
+                            <div>&nbsp;{errors.food.length > 0 && errors.food !== 'set' &&  
+                            <span1 className='error1'>{errors.food}</span1>}</div>
                         </div>
                         <div className="form-group">
                             <label >Where did you feed?</label>
@@ -128,7 +150,9 @@ class UserForm extends React.Component {
                             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label" >Check me out</label>
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>
+                            Submit
+                        </button>
 
                     </form>
                 </Container>
