@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
@@ -18,18 +17,7 @@ const validateForm = (errors) => {
     return valid;
     }
 
-const countErrors = (errors) => {
-        let count = 0;
-        Object.values(errors).forEach(
-          (val) => {if(val.length > 0)
-            {
-                if(val!=='set'){
-                    (count = count+1);
-                }
-            } }
-        );
-        return count;
-      }
+
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -37,6 +25,7 @@ class UserForm extends React.Component {
       this.state = {
           formValid: false,
           errcount: null,
+          username: '',
           feedtime: '',
           food: '',
           location: '',
@@ -44,6 +33,7 @@ class UserForm extends React.Component {
           quantity: '',  
           
           errors: {
+            username:'',
             feedtime: '',
             food: '',
             location: '',
@@ -62,7 +52,7 @@ class UserForm extends React.Component {
         const { name, value } = event.target;
         let errors = this.state.errors;
 
-        if(name ==='food' || name === 'location'){
+        if(name === 'username' || name ==='food' || name === 'location'){
             if((!event.target.value.match(/^[a-zA-Z ]+$/i)))
                 {
                     event.target.value = event.target.value.replace(/[^A-Za-z ]/ig, '')
@@ -95,12 +85,12 @@ class UserForm extends React.Component {
                     }              
         }
         else {
-            if(name=='feedtime'){
+            if(name==='feedtime'){
                 
-                errors[name] = value==''
+                errors[name] = value===''
                     ? 'Enter Time'
                     : 'set';
-                    if (value!='') {flag = 1;} else{ flag=0;}
+                    if (value!=='') {flag = 1;} else{ flag=0;}
             }
         }
 
@@ -122,7 +112,7 @@ class UserForm extends React.Component {
   
     render() {
 
-        const {errors, formValid} = this.state;
+        const {errors} = this.state;
 
         return (
             <>              
@@ -133,13 +123,20 @@ class UserForm extends React.Component {
                     This is a modified jumbotron that occupies the entire horizontal space of
                     its parent.
                     </p>
-                    <form onSubmit={this.handleSubmit} autocomplete="off">
+                    <form onSubmit={this.handleSubmit} autoComplete="off">
                   
+                        <div className="form-group">
+                            <label >Please Enter your full name.</label>                            
+                            <input  type="text" name="username" step="1" value={this.state.time} className="form-control" placeholder="Full Name" onChange={this.handleChange}/>                         
+                            <div>&nbsp;{errors.username.length > 0 && errors.username !== 'set' &&  
+                            <span className='error1'>{errors.username}</span>}</div>
+                        </div>
+
                         <div className="form-group">
                             <label >What time did you feed the ducks?</label>                            
                             <input  type="time" name="feedtime" step="1" value={this.state.time} className="form-control" placeholder="Time" onChange={this.handleChange}/>                         
                             <div>&nbsp;{errors.feedtime.length > 0 && errors.feedtime !== 'set' &&  
-                            <span1 className='error1'>{errors.feedtime}</span1>}</div>
+                            <span className='error1'>{errors.feedtime}</span>}</div>
                         </div>
                         
                         
@@ -147,28 +144,28 @@ class UserForm extends React.Component {
                             <label >What did you feed?</label>
                             <input type="text" className="form-control" name="food" id="food" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.food.length > 0 && errors.food !== 'set' &&  
-                            <span1 className='error1'>{errors.food}</span1>}</div>
+                            <span className='error1'>{errors.food}</span>}</div>
                         </div>
 
                         <div className="form-group">
                             <label >Where did you feed?</label>
                             <input type="text" className="form-control" name="location" id="location" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.location.length > 0 && errors.location !== 'set' &&  
-                            <span1 className='error1'>{errors.location}</span1>}</div>
+                            <span className='error1'>{errors.location}</span>}</div>
                         </div>
                         
                         <div className="form-group">
                             <label >Hiow many did you feed?</label>
                             <input type="text" className="form-control" name="number" id="number" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.number.length > 0 && errors.number !== 'set' &&  
-                            <span1 className='error1'>{errors.number}</span1>}</div>
+                            <span className='error1'>{errors.number}</span>}</div>
                         </div>
                         
                         <div className="form-group">
                             <label >How much did you feed?</label>
                             <input type="text" className="form-control" name="quantity" id="quantity" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.quantity.length > 0 && errors.quantity !== 'set' &&  
-                            <span1 className='error1'>{errors.quantity}</span1>}</div>
+                            <span className='error1'>{errors.quantity}</span>}</div>
                         </div>
 
 
