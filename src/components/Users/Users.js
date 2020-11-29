@@ -18,7 +18,18 @@ const validateForm = (errors) => {
     return valid;
     }
 
-
+const countErrors = (errors) => {
+        let count = 0;
+        Object.values(errors).forEach(
+          (val) => {if(val.length > 0)
+            {
+                if(val!=='set'){
+                    (count = count+1);
+                }
+            } }
+        );
+        return count;
+      }
 
 class UserForm extends React.Component {
     constructor(props) {
@@ -64,19 +75,24 @@ class UserForm extends React.Component {
                 }
         }
 
-        else if(name ==='number' || name ==='quantity'){
-            if((!event.target.value.match(/^[0-9 ]+$/i)))
-                {
-                    event.target.value = event.target.value.replace(/[^0-9 ]/ig, '')
-                }
-                else{
-                    if (value>=1 && value !=='') {
+        else if(name ==='number' || name ==='quantity'){             
+                    if((!event.target.value.match(/^[0-9 ]+$/i))){
+                        event.target.value = event.target.value.replace(/[^0-9 ]/ig, '') }
+                        
+                    if (isNaN(event.target.value)) {
+                        errors[name] = 'field can only be number'
+                      }
+                  
+                    if (!event.target.value) {
+                        errors[name] = 'field cannot be empty'
+                      }
+                    
+                    if(event.target.value >=1) {
                         errors[name] = 'set';
-                        flag = 1;} 
-                    else{ 
-                        errors[name] = 'Minimum number cannot be less than 1';
-                        flag=0;}
-                }            
+                    }
+                    else{
+                        errors[name] = 'field can only be number'
+                    }              
         }
         else {
             if(name=='feedtime'){
@@ -89,7 +105,7 @@ class UserForm extends React.Component {
         }
 
         this.setState({errors, [name]: value}, ()=> {
-            console.log("Error=",errors)
+            console.log("Error=",errors);
         })
         this.setState({formValid: validateForm(this.state.errors)});
         console.log("Valid = ", this.state.formValid );
@@ -117,14 +133,15 @@ class UserForm extends React.Component {
                     This is a modified jumbotron that occupies the entire horizontal space of
                     its parent.
                     </p>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} autocomplete="off">
                   
                         <div className="form-group">
                             <label >What time did you feed the ducks?</label>                            
                             <input  type="time" name="feedtime" step="1" value={this.state.time} className="form-control" placeholder="Time" onChange={this.handleChange}/>                         
+                            <div>&nbsp;{errors.feedtime.length > 0 && errors.feedtime !== 'set' &&  
+                            <span1 className='error1'>{errors.feedtime}</span1>}</div>
                         </div>
-                        <div>&nbsp;{errors.feedtime.length > 0 && errors.feedtime !== 'set' &&  
-                        <span1 className='error1'>{errors.feedtime}</span1>}</div>
+                        
                         
                         <div className="form-group">
                             <label >What did you feed?</label>
@@ -132,17 +149,26 @@ class UserForm extends React.Component {
                             <div>&nbsp;{errors.food.length > 0 && errors.food !== 'set' &&  
                             <span1 className='error1'>{errors.food}</span1>}</div>
                         </div>
+
                         <div className="form-group">
                             <label >Where did you feed?</label>
                             <input type="text" className="form-control" name="location" id="location" onChange={this.handleChange} placeholder="Password"/>
+                            <div>&nbsp;{errors.location.length > 0 && errors.location !== 'set' &&  
+                            <span1 className='error1'>{errors.location}</span1>}</div>
                         </div>
+                        
                         <div className="form-group">
                             <label >Hiow many did you feed?</label>
                             <input type="text" className="form-control" name="number" id="number" onChange={this.handleChange} placeholder="Password"/>
+                            <div>&nbsp;{errors.number.length > 0 && errors.number !== 'set' &&  
+                            <span1 className='error1'>{errors.number}</span1>}</div>
                         </div>
+                        
                         <div className="form-group">
                             <label >How much did you feed?</label>
                             <input type="text" className="form-control" name="quantity" id="quantity" onChange={this.handleChange} placeholder="Password"/>
+                            <div>&nbsp;{errors.quantity.length > 0 && errors.quantity !== 'set' &&  
+                            <span1 className='error1'>{errors.quantity}</span1>}</div>
                         </div>
 
 
