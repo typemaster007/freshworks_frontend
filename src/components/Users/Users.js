@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container } from "react-bootstrap";
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import axios from 'axios';
+import Popup from "reactjs-popup";
 
 let flag=0;
 
@@ -108,11 +110,39 @@ class UserForm extends React.Component {
         
         console.log("Submit working") 
         console.log(this.state)
+
+        axios
+              .post('http://localhost:5000/addducks', this.state)
+              .then(response => {
+                console.log(response)
+                if(response.data=='Same user cannot feed at the same time'){
+                  this.play("Same user cannot feed at the same time")
+                }
+                else{
+                  
+                  console.log(this.state); 
+                  this.cancelCourse();
+                  
+                }
+              })
+              .catch(error => 
+                {
+                console.log(error)
+                }) 
+    }
+
+    cancelCourse = () => { 
+        document.getElementById("create-course-form").reset();
+        document.getElementById("create-course-form")
+      }
+
+    play(msg) {
+        alert(msg);
     }
   
     render() {
 
-        const {errors} = this.state;
+        const {errors, formValid} = this.state;
 
         return (
             <>              
@@ -123,7 +153,7 @@ class UserForm extends React.Component {
                     This is a modified jumbotron that occupies the entire horizontal space of
                     its parent.
                     </p>
-                    <form onSubmit={this.handleSubmit} autoComplete="off">
+                    <form id ="create-course-form" onSubmit={this.handleSubmit} autoComplete="off">
                   
                         <div className="form-group">
                             <label >Please Enter your full name.</label>                            
@@ -173,9 +203,27 @@ class UserForm extends React.Component {
                             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                             <label className="form-check-label" >Check me out</label>
                         </div>
-                        <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>
-                            Submit
-                        </button>
+                        
+                        <Popup trigger={<button className="btn btn-primary" style={{padding:'5px', margin:'5px'}}
+                                            disabled={!this.state.formValid} noValidate  >Submit</button> } modal>
+                            {close => (
+                            <div style={{border: 'solid 2px',borderColor: 'black', borderRadius: '5px', background: 'white', padding:'10px'}}>
+                            <h3 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Duck Details added successfully</h3>
+                            <div className="validmsg" > 
+                                <p style={{color:"black",justifyContent: 'center', display: 'flex'}} >Your Duck feeding data points can now be analyzed by the scientist</p>
+                                <hr/>
+                                <div style={{justifyContent: 'center', display: 'flex'}}>
+                                <button
+                                    className="btn btn-success"
+                                    onClick={() => {close(); window.location.reload(false);                                                       
+                                    }} style={{justifyContent: 'center'}}>
+                                    Done
+                                </button>
+                                </div>                                                                                                   
+                            </div>
+                            </div>        
+                            )}
+                        </Popup>
 
                     </form>
                 </Container>
