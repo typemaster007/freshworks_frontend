@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios';
 import Popup from "reactjs-popup";
+import {Link} from 'react-router-dom';
 
 let flag=0;
 
@@ -106,7 +107,6 @@ class UserForm extends React.Component {
   
     handleSubmit(event) {
         event.preventDefault();           
-        const { name, value } = event.target;
         
         console.log("Submit working") 
         console.log(this.state)
@@ -115,7 +115,7 @@ class UserForm extends React.Component {
               .post('http://localhost:5000/addducks', this.state)
               .then(response => {
                 console.log(response)
-                if(response.data=='Same user cannot feed at the same time'){
+                if(response.data ==='Same user cannot feed at the same time'){
                   this.play("Same user cannot feed at the same time")
                 }
                 else{
@@ -142,12 +142,12 @@ class UserForm extends React.Component {
   
     render() {
 
-        const {errors, formValid} = this.state;
+        const {errors} = this.state;
 
         return (
-            <>              
+            <div class="container-full-bg">            
               <Jumbotron fluid>
-                <Container>
+              <div class="container-full-bg" style={{backgroundColor:'#e9ecef'}}> 
                     <h1>Fluid jumbotron</h1>
                     <p>
                     This is a modified jumbotron that occupies the entire horizontal space of
@@ -213,12 +213,15 @@ class UserForm extends React.Component {
                                 <p style={{color:"black",justifyContent: 'center', display: 'flex'}} >Your Duck feeding data points can now be analyzed by the scientist</p>
                                 <hr/>
                                 <div style={{justifyContent: 'center', display: 'flex'}}>
-                                <button
-                                    className="btn btn-success"
-                                    onClick={() => {close(); window.location.reload(false);                                                       
-                                    }} style={{justifyContent: 'center'}}>
-                                    Done
-                                </button>
+                                <Link to={'/'}>
+                                    <button
+                                        className="btn btn-success"
+                                        onClick={() => {close();                                                       
+                                        }} style={{justifyContent: 'center'}}>
+                                        Done
+                                    </button>
+                                </Link>
+                                                                
                                 </div>                                                                                                   
                             </div>
                             </div>        
@@ -226,10 +229,11 @@ class UserForm extends React.Component {
                         </Popup>
 
                     </form>
-                </Container>
+                </div>
                 </Jumbotron>
+            </div>
               
-            </>
+            
       );
     }
   }
