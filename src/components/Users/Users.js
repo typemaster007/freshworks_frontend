@@ -202,8 +202,8 @@ class UserForm extends React.Component {
 
 
                         <div className="form-group form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                            <label className="form-check-label" >Check me out</label>
+                            <input type="checkbox" className="form-check-input" name="agreecheck" id="agreecheck"/>
+                            <label className="form-check-label" >(Optional) I would like to be contacted in the future for duck feeding habits research done by scientists </label>
                         </div>
                         
                         <Popup trigger={<button className="btn btn-primary" style={{padding:'5px', margin:'5px'}}
