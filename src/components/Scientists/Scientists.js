@@ -17,26 +17,7 @@ class Scientist extends React.Component {
           number: null,
           location: null,
 
-          duckdata: [
-              {
-                    "id":"1",
-                    "username":"John Cooler",
-                    "feedtime":"9.15 AM",
-                    "food":"salad",
-                    "location":"Miami",
-                    "number":"6",
-                    "quantity":"12"
-              },
-              {
-                    "id":"2",
-                    "username":"Mark Hamberg",
-                    "feedtime":"6.15 PM",
-                    "food":"celery",
-                    "location":"Hawaii",
-                    "number":"4",
-                    "quantity":"10"
-            },
-          ],
+          duckdata: [],
 
           errors: {
               
@@ -53,7 +34,8 @@ class Scientist extends React.Component {
         axios
           .get('http://localhost:5000/getducks')
           .then(response => {
-            console.log("Response =" ,response)
+            console.log("Response =" ,response.data)
+            this.setState({ duckdata: response.data })
           })
           .catch(error => {
             console.log("Error = ", error)
@@ -71,7 +53,7 @@ class Scientist extends React.Component {
     return (
         <>              
         <Jumbotron fluid>
-          <Container style = {{height: "1200px"}}>
+          <Container style = {{height: "1200px"}} ref={this.inputRef}>
               <h1>Duck Feeding Habits Data</h1>
               <p>
                 Duck Data from around for Scientists to view.
@@ -92,9 +74,9 @@ class Scientist extends React.Component {
                         }
                         return (
                             <div key={duck.id} className="col col-sm-4 " 
-                                style={{width: "360px", float:"left", marginLeft:"-15px"}} ref={this.inputRef}>
+                                style={{width: "360px", float:"left", marginLeft:"-15px"}} >
                                 <div className={"card "+newColor} style= {{width: "auto",height: "300px"}}>
-                                    <div className="card-body" key={duck.id} style={{width: "auto"}} >
+                                    <div className="card-body" key={duck.id} style={{width: "auto"}}  >
                                         
                                         
                                         <Popup trigger={<h4 className="card-title"><Link style={{color:'black'}}>{duck.username}</Link></h4>} 
