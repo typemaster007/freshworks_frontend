@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container } from "react-bootstrap";
+//import { Container } from "react-bootstrap";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import {Link} from 'react-router-dom';
+import "./Users.css"
 
 let flag=0;
 
@@ -145,14 +146,13 @@ class UserForm extends React.Component {
         const {errors} = this.state;
 
         return (
-            <div class="container-full-bg">            
+            <div className="container-full-bg">            
               <Jumbotron fluid>
-              <div class="container-full-bg" style={{backgroundColor:'#e9ecef'}}> 
-                    <h1>Fluid jumbotron</h1>
-                    <p>
-                    This is a modified jumbotron that occupies the entire horizontal space of
-                    its parent.
-                    </p>
+              <div className="container" style={{backgroundColor:'#e9ecef'}}> 
+                    <h1 style={{textAlign:"center", padding:"10px"}}>Duck feeding habits Data Research</h1>
+                    <h5 style={{paddingTop: "5px"}}>
+                    Please enter the data points that you have acquired for feeding ducks in your location.
+                    </h5>
                     <form id ="create-course-form" onSubmit={this.handleSubmit} autoComplete="off">
                   
                         <div className="form-group">

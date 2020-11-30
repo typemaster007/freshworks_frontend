@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Jumbotron } from "react-bootstrap";
-import {Link} from 'react-router-dom';
-import Popup from "reactjs-popup";
+//import {Link} from 'react-router-dom';
+//import Popup from "reactjs-popup";
 import axios from 'axios';
 import "./Scientists.css"
 
@@ -77,26 +77,10 @@ class Scientist extends React.Component {
                                 style={{width: "400px", float:"left", marginLeft:"0px",marginTop: "20px"}} >
                                 <div className={"card "+newColor} style= {{width: "auto",height: "300px"}}>
                                     <div className="card-body" key={duck.id} style={{width: "auto"}}  >                                      
-                                        <Popup trigger={<h4 className="card-title"><Link style={{color:'black'}}>{duck.username}</Link></h4>}  modal>
-                                              {close => (
-                                              <div style={{border: 'solid 2px',borderColor: 'black', borderRadius: '5px', background: 'white', padding:'10px'}}>
-                                              <h3 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Duck Details added successfully</h3>
-                                              <div className="validmsg" > 
-                                                  <p style={{color:"black",justifyContent: 'center', display: 'flex'}} >Your Duck feeding data points can now be analyzed by the scientist</p>
-                                                  <hr/>
-                                                  <div style={{justifyContent: 'center', display: 'flex'}}>                                              
-                                                      <button
-                                                          className="btn btn-success"
-                                                          onClick={() => {close();                                                       
-                                                          }} style={{justifyContent: 'center'}}>
-                                                          Done
-                                                      </button>                                                                              
-                                                  </div>                                                                                                   
-                                              </div>
-                                              </div>        
-                                              )}
-                                        </Popup>
-
+                                        
+                                        <h5><p className="card-text">
+                                           Name: {duck.username} 
+                                        </p></h5>
                                         <hr />
                                         <p className="card-text">
                                             Feedtime: {duck.feedtime}

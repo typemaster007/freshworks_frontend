@@ -6,9 +6,10 @@ import {
   Route,
 } from "react-router-dom";
 
-import LandingPage from './components/Landing/Landing'
-import UserPage from './components/Users/Users'
-import ScientistPage from './components/Scientists/Scientists'
+import LandingPage from './components/Landing/Landing';
+import UserPage from './components/Users/Users';
+import ScientistPage from './components/Scientists/Scientists';
+import "./App.css";
 
 
 function App() {
