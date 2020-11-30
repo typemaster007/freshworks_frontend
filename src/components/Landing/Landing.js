@@ -20,7 +20,7 @@ function LandingPage(props) {
             <h2 style={{textAlign:"center"}}>Duck Feeding habits research</h2>
           </div>
           
-          <div className="card-body" style={{backgroundColor:"#f6f6f6"}}>
+          <div className="card-body" >
           <div className="row">
             <div className="column"> <img src={duck1} alt="Trulli" width="100%" height="320" ></img> </div>
             <div className="column"> <img src={duck2} alt="Trulli" width="100%" height="320" ></img> </div>

@@ -29,7 +29,7 @@ function NavigationBar(props) {
         sticky="top"
       >
         <Nav.Link className="navbar-brand" href="/">
-          Test
+          DuckData
         </Nav.Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

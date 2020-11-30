@@ -65,40 +65,40 @@ class Scientist extends React.Component {
                         let newColor = ""
                         switch(duck.id % 9) {
                             case 1:
-                              newColor="bg-info text-light"; 
+                              newColor="#69F08C"; 
                               break;
                             case 2:
-                              newColor="bg-success text-light"; 
+                              newColor="#0FF8FC"; 
                               break;
 
                             case 3:
-                              newColor="bg-primary text-light"; 
+                              newColor="#F3F4F1"; 
                               break;
                             
                             case 4:
-                              newColor="bg-info text-light"; 
+                              newColor="#D3EACE"; 
                               break;
                             case 5:
-                              newColor="bg-success text-light"; 
+                              newColor="#D1DADA"; 
                               break;
                             case 6:
                               newColor="#a8cdff"; 
                               break;
                             case 7:
-                              newColor="bg-dark text-light"; 
+                              newColor="#0099CC"; 
                               break;
                             case 8:
-                              newColor="bg-warning text-dark"; 
+                              newColor="#F3AE9A"; 
                               break;
                             
                             default:
-                                newColor="bg-info text-light";
+                                newColor="#00F5FE";
                                 break
                         }
                         return (
                             <div key={duck.id} className="col col-sm-4 " 
                                 style={{width: "400px", float:"left", marginLeft:"0px",marginTop: "20px"}} >
-                                <div className={"card "+newColor} style= {{width: "auto",height: "300px"}}>
+                                <div className={"card "} style= {{width: "auto",height: "300px", backgroundColor: newColor}}>
                                     <div className="card-body" key={duck.id} style={{width: "auto"}}  >                                      
                                         
                                         <h5><p className="card-text">
