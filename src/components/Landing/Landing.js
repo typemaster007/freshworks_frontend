@@ -40,7 +40,7 @@ function LandingPage(props) {
           <div className="card-body">
             <h5 className="card-title">Duck feeding habits research</h5>
             <p className="card-text">Your data on how you have fed the ducks allows scientists to obtain valuable research data.</p>
-            <a href="/users" className="btn btn-primary">Submit your data</a>
+            <a href="/users" className="btn btn-primary">Submit data</a>
           </div>
         </div>
 

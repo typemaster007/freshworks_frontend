@@ -229,6 +229,11 @@ class UserForm extends React.Component {
                             </div>        
                             )}
                         </Popup>
+                        <Link to={'/'}>
+                                    <button  className="btn btn-primary"style={{justifyContent: 'center'}}>
+                                        Cancel
+                                    </button>
+                        </Link>
 
                     </form>
                 </div>
