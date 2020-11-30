@@ -156,14 +156,14 @@ class UserForm extends React.Component {
                     <form id ="create-course-form" onSubmit={this.handleSubmit} autoComplete="off">
                   
                         <div className="form-group">
-                            <label >Please Enter your full name.</label>                            
+                            <label >Please enter your full name.</label>                            
                             <input  type="text" name="username" step="1" value={this.state.time} className="form-control" placeholder="Full Name" onChange={this.handleChange}/>                         
                             <div>&nbsp;{errors.username.length > 0 && errors.username !== 'set' &&  
                             <span className='error1'>{errors.username}</span>}</div>
                         </div>
 
                         <div className="form-group">
-                            <label >What time did you feed the ducks?</label>                            
+                            <label >What time did you feed the ducks? (AM/PM)</label>                            
                             <input  type="time" name="feedtime" step="1" value={this.state.time} className="form-control" placeholder="Time" onChange={this.handleChange}/>                         
                             <div>&nbsp;{errors.feedtime.length > 0 && errors.feedtime !== 'set' &&  
                             <span className='error1'>{errors.feedtime}</span>}</div>
@@ -171,28 +171,30 @@ class UserForm extends React.Component {
                         
                         
                         <div className="form-group">
-                            <label >What did you feed?</label>
+                            <label >What did you feed the ducks?</label>
                             <input type="text" className="form-control" name="food" id="food" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.food.length > 0 && errors.food !== 'set' &&  
                             <span className='error1'>{errors.food}</span>}</div>
                         </div>
 
                         <div className="form-group">
-                            <label >Where did you feed?</label>
+                            <label >Where did you feed the ducks? (City/Area)</label>
                             <input type="text" className="form-control" name="location" id="location" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.location.length > 0 && errors.location !== 'set' &&  
                             <span className='error1'>{errors.location}</span>}</div>
                         </div>
                         
                         <div className="form-group">
-                            <label >Hiow many did you feed?</label>
+                            <label >Hiow many ducks did you feed?</label>
                             <input type="text" className="form-control" name="number" id="number" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.number.length > 0 && errors.number !== 'set' &&  
                             <span className='error1'>{errors.number}</span>}</div>
                         </div>
                         
                         <div className="form-group">
-                            <label >How much did you feed?</label>
+                            <div><label >How much food did you feed the ducks? (kgs/pounds)</label></div>
+                            <div id = "radio1"><input type="radio" name="unit"/>kg</div> 
+                            <div id = "radio2"><input type="radio" name="unit"/>lbs</div>
                             <input type="text" className="form-control" name="quantity" id="quantity" onChange={this.handleChange} placeholder="Password"/>
                             <div>&nbsp;{errors.quantity.length > 0 && errors.quantity !== 'set' &&  
                             <span className='error1'>{errors.quantity}</span>}</div>
@@ -207,7 +209,7 @@ class UserForm extends React.Component {
                         <Popup trigger={<button className="btn btn-primary" style={{padding:'5px', margin:'5px'}}
                                             disabled={!this.state.formValid} noValidate  >Submit</button> } modal>
                             {close => (
-                            <div style={{border: 'solid 2px',borderColor: 'black', borderRadius: '5px', background: 'white', padding:'10px'}}>
+                            <div id="popupdiv">
                             <h3 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Duck Details added successfully</h3>
                             <div className="validmsg" > 
                                 <p style={{color:"black",justifyContent: 'center', display: 'flex'}} >Your Duck feeding data points can now be analyzed by the scientist</p>

@@ -56,7 +56,7 @@ class Scientist extends React.Component {
           <Container  ref={this.inputRef}>
               <h1>Duck Feeding Habits Data</h1>
               <p>
-                Duck Data from around for Scientists to view.
+                Duck Data from around the world for Scientists to view.
               </p>
               <div className="container " style= {{height: 'auto',width: 'auto', overflowY: 'scroll', margin: '0px'}}>
               {
@@ -65,8 +65,31 @@ class Scientist extends React.Component {
                         let newColor = ""
                         switch(duck.id % 9) {
                             case 1:
-                                newColor="bg-info text-light"; 
-                                break;
+                              newColor="bg-info text-light"; 
+                              break;
+                            case 2:
+                              newColor="bg-success text-light"; 
+                              break;
+
+                            case 3:
+                              newColor="bg-primary text-light"; 
+                              break;
+                            
+                            case 4:
+                              newColor="bg-info text-light"; 
+                              break;
+                            case 5:
+                              newColor="bg-success text-light"; 
+                              break;
+                            case 6:
+                              newColor="#a8cdff"; 
+                              break;
+                            case 7:
+                              newColor="bg-dark text-light"; 
+                              break;
+                            case 8:
+                              newColor="bg-warning text-dark"; 
+                              break;
                             
                             default:
                                 newColor="bg-info text-light";
